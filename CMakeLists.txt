@@ -27,7 +27,7 @@ endif()
 # Dependencies 
 find_package(Threads REQUIRED)
 find_package(OpenSSL REQUIRED)
-find_package(asio REQUIRED)
+#find_package(asio REQUIRED)
 
 # main targets, sources are populated in subdirs
 add_executable(vroom "")
@@ -35,12 +35,14 @@ add_library(libvroom STATIC "")
 
 add_subdirectory(${CMAKE_SOURCE_DIR}/src)
 
-target_link_libraries(vroom PRIVATE asio asio::asio)
+#target_link_libraries(vroom PRIVATE asio asio::asio)
 target_link_libraries(vroom PRIVATE OpenSSL::Crypto)
 target_link_libraries(vroom PRIVATE OpenSSL::SSL)
-target_link_libraries(libvroom PUBLIC asio asio::asio)
+target_link_libraries(vroom PRIVATE Threads::Threads)
+#target_link_libraries(libvroom PUBLIC asio asio::asio)
 target_link_libraries(libvroom PUBLIC OpenSSL::Crypto)
 target_link_libraries(libvroom PUBLIC OpenSSL::SSL)
+target_link_libraries(libvroom PRIVATE Threads::Threads)
 
 if(WIN32) 
   # prevent std::numeric_limits::max and other issues
@@ -58,3 +60,4 @@ target_include_directories(vroom PUBLIC "${CMAKE_SOURCE_DIR}/include")
 target_include_directories(vroom PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/src")
 target_include_directories(libvroom PUBLIC "${CMAKE_SOURCE_DIR}/include")
 target_include_directories(libvroom PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/src")
+set_target_properties(libvroom PROPERTIES PREFIX "")
