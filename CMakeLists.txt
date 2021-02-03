@@ -2,6 +2,8 @@
 cmake_minimum_required(VERSION 3.13 FATAL_ERROR)
 project(vroom LANGUAGES CXX C)
 
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/")
+
 include(FindPkgConfig)
 include(GNUInstallDirs)
 
@@ -27,7 +29,7 @@ endif()
 # Dependencies 
 find_package(Threads REQUIRED)
 find_package(OpenSSL REQUIRED)
-#find_package(asio REQUIRED)
+find_package(Asio REQUIRED)
 
 # main targets, sources are populated in subdirs
 add_executable(vroom "")
@@ -35,11 +37,9 @@ add_library(libvroom STATIC "")
 
 add_subdirectory(${CMAKE_SOURCE_DIR}/src)
 
-#target_link_libraries(vroom PRIVATE asio asio::asio)
 target_link_libraries(vroom PRIVATE OpenSSL::Crypto)
 target_link_libraries(vroom PRIVATE OpenSSL::SSL)
 target_link_libraries(vroom PRIVATE Threads::Threads)
-#target_link_libraries(libvroom PUBLIC asio asio::asio)
 target_link_libraries(libvroom PUBLIC OpenSSL::Crypto)
 target_link_libraries(libvroom PUBLIC OpenSSL::SSL)
 target_link_libraries(libvroom PRIVATE Threads::Threads)
