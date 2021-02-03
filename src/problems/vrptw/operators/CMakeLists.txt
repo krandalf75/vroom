@@ -12,7 +12,7 @@ set(private_src
     "${CMAKE_CURRENT_SOURCE_DIR}/intra_or_opt.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/intra_or_opt.h"
     "${CMAKE_CURRENT_SOURCE_DIR}/intra_relocate.cpp"
-    "${CMAKE_CURRENT_SOURCE_DIR}/intra_or_opt.h"
+    "${CMAKE_CURRENT_SOURCE_DIR}/intra_relocate.h"
     "${CMAKE_CURRENT_SOURCE_DIR}/mixed_exchange.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/mixed_exchange.h"
     "${CMAKE_CURRENT_SOURCE_DIR}/or_opt.cpp"

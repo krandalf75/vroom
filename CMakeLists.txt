@@ -12,6 +12,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 option(USE_LIBOSRM "Enable libosrm support" OFF)
 option(USE_LIBGLPK "Enable libglpk support" OFF)
+option(ENABLE_EXAMPLE "Enable libvroom.cpp compile" OFF)
 option(BUILD_SHARED_LIBS "Build using shared libraries" OFF)
 
 if(CMAKE_BUILD_TYPE MATCHES Debug)
@@ -42,7 +43,7 @@ target_link_libraries(vroom PRIVATE OpenSSL::SSL)
 target_link_libraries(vroom PRIVATE Threads::Threads)
 target_link_libraries(libvroom PUBLIC OpenSSL::Crypto)
 target_link_libraries(libvroom PUBLIC OpenSSL::SSL)
-target_link_libraries(libvroom PRIVATE Threads::Threads)
+target_link_libraries(libvroom PUBLIC Threads::Threads)
 
 if(WIN32) 
   # prevent std::numeric_limits::max and other issues
@@ -57,7 +58,12 @@ if(WIN32)
 endif()
 
 target_include_directories(vroom PUBLIC "${CMAKE_SOURCE_DIR}/include")
-target_include_directories(vroom PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/src")
+target_include_directories(vroom PUBLIC "${CMAKE_SOURCE_DIR}/src")
 target_include_directories(libvroom PUBLIC "${CMAKE_SOURCE_DIR}/include")
-target_include_directories(libvroom PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/src")
+target_include_directories(libvroom PUBLIC "${CMAKE_SOURCE_DIR}/src")
 set_target_properties(libvroom PROPERTIES PREFIX "")
+
+if(ENABLE_EXAMPLE)
+  add_executable(libvroom_example "")
+  add_subdirectory(${CMAKE_SOURCE_DIR}/libvroom_examples)
+endif()

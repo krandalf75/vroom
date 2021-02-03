@@ -4,4 +4,6 @@ set(private_src
     "${CMAKE_CURRENT_SOURCE_DIR}/vrptw.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/vrptw.h"
 )
+
 target_sources(vroom PRIVATE ${private_src})
+target_sources(libvroom PRIVATE ${private_src})
