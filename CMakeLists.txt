@@ -46,6 +46,14 @@ target_link_libraries(libvroom PUBLIC OpenSSL::SSL)
 target_link_libraries(libvroom PUBLIC Threads::Threads)
 
 if(WIN32) 
+
+  #disable iterator base class deprecation warning
+  add_compile_definitions(_SILENCE_CXX17_ITERATOR_BASE_CLASS_DEPRECATION_WARNING)
+
+  #additional library dependency  
+  target_link_libraries(vroom PRIVATE Crypt32.lib)
+  target_link_libraries(libvroom PRIVATE Crypt32.lib)  
+
   # prevent std::numeric_limits::max and other issues
   target_compile_definitions(vroom
     PUBLIC
@@ -59,8 +67,12 @@ endif()
 
 target_include_directories(vroom PUBLIC "${CMAKE_SOURCE_DIR}/include")
 target_include_directories(vroom PUBLIC "${CMAKE_SOURCE_DIR}/src")
+target_include_directories(vroom PUBLIC "${ASIO_INCLUDE_DIR}")
+
 target_include_directories(libvroom PUBLIC "${CMAKE_SOURCE_DIR}/include")
 target_include_directories(libvroom PUBLIC "${CMAKE_SOURCE_DIR}/src")
+target_include_directories(libvroom PUBLIC "${ASIO_INCLUDE_DIR}")
+
 set_target_properties(libvroom PROPERTIES PREFIX "")
 
 if(ENABLE_EXAMPLE)
