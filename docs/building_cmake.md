@@ -17,3 +17,22 @@ It's also possible build this project with cmake.
 - Execute: cd build
 - Execute (check paths before): cmake -G Ninja .. -DAsio_DIR="C:/projectes/asio-1.18.1" -DASIO_INCLUDE_DIR="C:/projectes/asio-1.18.1/include" -DOPENSSL_ROOT_DIR="C:\Program Files\OpenSSL-Win64" -DCMAKE_BUILD_TYPE=Release  
 - Execute: ninja -j 4
+
+## MacOS
+
+### Install dependencies
+
+- Check Xcode already installed.
+- Open terminal
+- Install OpenSSL. Execute: brew install OpenSSL
+- Install asio. Execute: brew install asio
+
+### Building
+
+Execute following sentences:
+- git clone https://github.com/VROOM-Project/vroom
+- cd vroom
+- mkdir build
+- cd build 
+- cmake .. -DOPENSSL_ROOT_DIR=/usr/local/Cellar/openssl\@1.1/1.1.1k/
+- make
