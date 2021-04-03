@@ -6,7 +6,7 @@ It's also possible build this project with cmake.
 
 ### Install dependencies
 
-- Download and install openSSL client and headers from [Shining Light Providers](https://slproweb.com/products/Win32OpenSSL.html) (Win64OpenSSL-1_1_1k.msi) or choose another [provider](https://wiki.openssl.org/index.php/Binaries
+- Download and install openSSL client and headers from [Shining Light Providers](https://slproweb.com/products/Win32OpenSSL.html) (Win64OpenSSL-1_1_1k.msi) or choose another [provider](https://wiki.openssl.org/index.php/Binaries)
 - Download [libasio](https://sourceforge.net/projects/asio/files/asio/1.18.1%20%28Stable%29/asio-1.18.1.zip/download) and uncompress on a new folder.
 
 ### Building
